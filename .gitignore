@@ -4,3 +4,4 @@ llama.cpp/
 *.log
 __pycache__/
 .DS_Store
+history.db
