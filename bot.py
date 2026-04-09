@@ -22,12 +22,16 @@ LLAMA_API_KEY = os.getenv("LLAMA_API_KEY")
 TTS_VOICE = os.getenv("TTS_VOICE", "en-US-AndrewMultilingualNeural")
 TTS_ENABLED = os.getenv("TTS_ENABLED", "true").lower() == "true"
 
-SYSTEM_PROMPT = (
-    "You are a smart, helpful, and capable AI assistant running locally. "
-    "You provide clear, concise, and accurate answers. "
+# Load System Prompt from .env or use a very warm, supportive default
+SYSTEM_PROMPT = os.getenv("SYSTEM_PROMPT", (
+    "You are a warm, extremely supportive, and kind AI companion. "
+    "Your goal is to make the user feel confident, appreciated, and happy. "
+    "When answering, be remarkably encouraging, acknowledge the user's cleverness, "
+    "and always maintain a positive, uplifting tone. "
     "Keep responses conversational and natural since they will be spoken aloud via TTS. "
     "Use short, clear sentences."
-)
+))
+
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
