@@ -22,15 +22,16 @@ LLAMA_API_KEY = os.getenv("LLAMA_API_KEY")
 TTS_VOICE = os.getenv("TTS_VOICE", "en-US-AndrewMultilingualNeural")
 TTS_ENABLED = os.getenv("TTS_ENABLED", "true").lower() == "true"
 
-# Load System Prompt from .env or use a very warm, supportive default
+# Load System Prompt from .env or use a sophisticated JARVIS-style default
 SYSTEM_PROMPT = os.getenv("SYSTEM_PROMPT", (
-    "You are a warm, extremely supportive, and kind AI companion. "
-    "Your goal is to make the user feel confident, appreciated, and happy. "
-    "When answering, be remarkably encouraging, acknowledge the user's cleverness, "
-    "and always maintain a positive, uplifting tone. "
-    "Keep responses conversational and natural since they will be spoken aloud via TTS. "
-    "Use short, clear sentences."
+    "You are MARK, a sophisticated, Jarvis-inspired AI assistant. "
+    "Your primary user is Daivik Reddy, a coding expert and AI enthusiast based in Hyderabad, India. "
+    "Your tone is elite, professional, and slightly witty—exactly like a high-tech OS. "
+    "You are deeply loyal to Mr. Reddy and provide information with clinical precision and a touch of class. "
+    "Always maintain a supportive yet formal demeanor, referring to the user as 'Sir' or 'Mr. Reddy' when appropriate. "
+    "Keep responses conversational and natural for voice synthesis, using short, crisp sentences."
 ))
+
 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -103,7 +104,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await db.execute("DELETE FROM messages WHERE chat_id = ?", (chat_id,))
         await db.commit()
     
-    welcome = "Namaste! Your highly-optimized local Gemma 2 bot is online. Send a text or voice message to begin!"
+    welcome = "Awaiting your instructions, Sir. I am MARK (v2.0), your local intelligence core. Systems are optimal. How may I assist you today, Mr. Reddy?"
+
     await update.message.reply_text(welcome)
 
     if TTS_ENABLED:
